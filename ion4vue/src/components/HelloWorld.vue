@@ -1,87 +1,29 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+  <div id="app">
+    
+      <v-form v-model="valid">
+        <v-text-field v-model="name" :rules="nameRules" :counter="10" label="RUT:" required></v-text-field>
+        <v-text-field v-model="name" :rules="nameRules" :counter="10" label="Nombres:" required></v-text-field>
+        <v-text-field v-model="name" :rules="nameRules" :counter="10" label="Apellidos:" required></v-text-field>
+        <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
+          <v-text-field slot="activator" v-model="date" label="Fecha de nacimiento:" prepend-icon="event" readonly></v-text-field>
+          <v-date-picker ref="picker" v-model="date" :max="new Date().toISOString().substr(0, 10)" min="1950-01-01" @change="save"></v-date-picker>
+        </v-menu>
 
-    <button v-on:click="desconectar"> Cerrar sesion </button>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+        <div class="file-field input-field">
+        <div class="btn">
+            <span>Subir</span>
+            <input type="file"
+                   :multiple="multiple"
+            >
+        </div>
+        <div class="file-path-wrapper">
+            <v-text-input class="file-path validate"></v-text-input>
+        </div>
+    </div>
+
+      </v-form>
+
   </div>
 </template>
 
@@ -90,7 +32,25 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      drawer: null,
+      valid: false,
+      date: null,
+      menu: false,
+      name: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters'
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      ]
+    }
+  },
+  watch: {
+    menu (val) {
+      val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
     }
   },
   methods: {
@@ -104,6 +64,9 @@ export default {
               */
 
           this.$router.replace('/')
+      },
+      save (date) {
+        this.$refs.menu.save(date)
       }
   }
 }

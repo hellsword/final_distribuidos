@@ -1,36 +1,19 @@
 <template>
 
-    <ion-app>
-    <ion-header>
-      <ion-toolbar class="primary">
-        <ion-title>Ionic 4 Vue</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content padding>
-
-        
-        <h3>Iniciar sesión</h3>
-
+    <div>
         <img src=".././assets/logo.png"><br>
-
-        <ion-item class="ion-item">
-            <ion-label ><ion-icon name="md-person"></ion-icon> RUT: </ion-label>
-            <ion-input floating type="text" v-model="rut" placeholder="18456235"></ion-input>
-        </ion-item>
-
-        <ion-item class="ion-item">
-            <ion-label ><ion-icon name="md-key"></ion-icon> Contraseña:</ion-label>
-            <ion-input floating type="password" v-model="password" placeholder="*************"></ion-input>
-        </ion-item> 
-
-        <br>
-        <ion-button block v-on:click="conectar"> Conectar </ion-button>
-
-        <p>¿No tienes cuenta? Crea una pero ya!!!</p>
-
+        <v-card-text>
+            <v-form>
+                <v-text-field prepend-icon="person" label="RUT" type="text" v-model="rut"></v-text-field>
+                <v-text-field prepend-icon="lock" label="Contraseña" type="password" v-model="password"></v-text-field>
+            </v-form>
+        </v-card-text>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" v-on:click="conectar">Login</v-btn>
+        </v-card-actions>
         {{usuarios}}
-    </ion-content>
-  </ion-app>
+    </div>
 
 </template>
 
@@ -42,7 +25,7 @@ export default {
         return{
             rut: "",
             password: "",
-            usuarios: ""
+            usuarios: "",
         }
     },
     methods: {
@@ -50,12 +33,12 @@ export default {
         conectar: function(){
 
             /*
-            var urlKeeps = 'http://localhost:8000/api/home';
+            var urlKeeps = 'http://192.168.0.13:8000/api/home';
                 axios.get(urlKeeps).then(response => {
                     this.usuarios = response.data;
                 });
-                */
-
+              */  
+            
             this.$router.replace('zzz')
         }
     }
