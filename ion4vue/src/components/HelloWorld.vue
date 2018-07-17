@@ -10,24 +10,14 @@
           <v-date-picker ref="picker" v-model="date" :max="new Date().toISOString().substr(0, 10)" min="1950-01-01" @change="save"></v-date-picker>
         </v-menu>
 
-        <div class="file-field input-field">
-        <div class="btn">
-            <span>Subir</span>
-            <input type="file"
-                   :multiple="multiple"
-            >
-        </div>
-        <div class="file-path-wrapper">
-            <v-text-input class="file-path validate"></v-text-input>
-        </div>
-    </div>
-
+    
       </v-form>
 
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'HelloWorld',
   data () {
