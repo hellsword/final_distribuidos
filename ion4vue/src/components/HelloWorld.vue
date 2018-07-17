@@ -48,7 +48,8 @@ export default {
   methods: {
       desconectar: function(){
 
-          
+          console.log(this.$token)
+          /*
           var urlKeeps = 'http://192.168.0.13:8000/api/details';
                 axios.post(urlKeeps,{
                   headers: { 
@@ -62,6 +63,7 @@ export default {
                 });
            
            console.log("datos:   "+this.usuarios)
+          */
 
           //this.$router.replace('/')
       },

@@ -17,6 +17,12 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
+//variables globales
+Vue.prototype.$client_id = 6
+Vue.prototype.$client_secret = 'NqJYLx6oOGdRFhoDP50zU57jW4u9L0JkElE4QsqE'
+Vue.prototype.$grant_type = 'password'
+Vue.prototype.$token = 'xxx'
+
 
 /* eslint-disable no-new */
 new Vue({

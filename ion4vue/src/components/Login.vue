@@ -33,7 +33,14 @@ export default {
         //inicia sesion
         conectar: function(){
 
-            
+            console.log(this.$client_id)
+            console.log(this.$client_secret)
+            console.log(this.$grant_type)
+            console.log(this.$token)
+            this.$token = 'zzzzzzzzzzzzzzzzzzzz'
+
+            this.$router.replace('zzz')
+            /*
             var urlKeeps = 'http://192.168.0.13:8000/oauth/token';
             axios.post(urlKeeps, {
                 client_id: 6,
@@ -54,6 +61,7 @@ export default {
                 this.errors = 'No se pudo crear su servicio';
                 this.error = "Usuario y/o contraseña no validos"
             });
+            */
 
 
             /*
