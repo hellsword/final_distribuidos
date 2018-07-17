@@ -11,6 +11,7 @@ import router from './router'
 
 import _ from 'lodash';   //para filtros
 
+
 window.axios = require('axios');
 Vue.use(Vuetify)
 

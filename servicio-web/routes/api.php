@@ -13,8 +13,29 @@ use Illuminate\Http\Request;
 |
 */
 
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('auth', 'AppUsuarioController');
+
+Route::middleware('auth:api')->get('posts', function(){
+	return App\Test::all();
+});
+
+
+
+Route::group(['middleware' => 'cors'], function(){
+	Route::resource('auth', 'AppUsuarioController');
+
+
+	Route::post('login', 'API\UserController@login');
+	Route::post('register', 'API\UserController@register');
+
+	Route::group(['middleware' => 'auth:api'], function(){
+		Route::post('details', 'API\UserController@details');
+	});
+
+});
+
+

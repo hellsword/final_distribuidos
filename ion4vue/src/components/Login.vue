@@ -4,7 +4,7 @@
         <img src=".././assets/logo.png"><br>
         <v-card-text>
             <v-form>
-                <v-text-field prepend-icon="person" label="RUT" type="text" v-model="rut"></v-text-field>
+                <v-text-field prepend-icon="person" label="RUT" type="text" v-model="email"></v-text-field>
                 <v-text-field prepend-icon="lock" label="Contraseña" type="password" v-model="password"></v-text-field>
             </v-form>
         </v-card-text>
@@ -12,7 +12,7 @@
             <v-spacer></v-spacer>
             <v-btn color="primary" v-on:click="conectar">Login</v-btn>
         </v-card-actions>
-        {{usuarios}}
+        {{error}}
     </div>
 
 </template>
@@ -23,23 +23,47 @@
 export default {
     data: function() {
         return{
-            rut: "",
+            email: "",
             password: "",
             usuarios: "",
+            error: ""
         }
     },
     methods: {
         //inicia sesion
         conectar: function(){
 
+            
+            var urlKeeps = 'http://192.168.0.13:8000/oauth/token';
+            axios.post(urlKeeps, {
+                client_id: 6,
+                client_secret: 'NqJYLx6oOGdRFhoDP50zU57jW4u9L0JkElE4QsqE',
+                grant_type: 'password',
+                username: this.email,
+                password: this.password
+            },
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }
+            ).then(response => {
+                this.error = response.data.access_token,
+                this.email = '',
+                this.password = ''
+                //this.$router.replace('zzz')
+            }).catch(error => {
+                this.errors = 'No se pudo crear su servicio';
+                this.error = "Usuario y/o contraseña no validos"
+            });
+
+
             /*
-            var urlKeeps = 'http://192.168.0.13:8000/api/home';
+            var urlKeeps = 'http://192.168.0.13:8000/api/auth';
                 axios.get(urlKeeps).then(response => {
                     this.usuarios = response.data;
                 });
               */  
             
-            this.$router.replace('zzz')
+            //this.$router.replace('zzz')
         }
     }
 }

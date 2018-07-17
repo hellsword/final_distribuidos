@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Auth; 
+use App\Http\Controllers\Controller; 
+use App\User; 
+
+use Validator;
+use DB;
 
 class AppUsuarioController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -13,8 +22,10 @@ class AppUsuarioController extends Controller
      */
     public function index(Request $request)
     {
-        //se utiliza para iniciar sesion en la app
-        
+
+        $user = DB::table('users')->get();
+        return response()->json( $user, 200 ); 
+
     }
 
     /**
