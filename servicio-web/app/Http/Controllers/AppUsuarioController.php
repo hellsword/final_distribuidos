@@ -11,9 +11,10 @@ class AppUsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //se utiliza para iniciar sesion en la app
+        
     }
 
     /**
