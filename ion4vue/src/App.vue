@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     
+    <!-- PLANTILLA PARA LOS DEMAS COMPONENTES -->
     <v-app id="inspire">
 
       <v-navigation-drawer clipped fixed v-model="drawer" app>
@@ -12,7 +13,7 @@
             </v-list-tile-avatar>
 
             <v-list-tile-content>
-              <v-list-tile-title>John Leider</v-list-tile-title>
+              <v-list-tile-title>{{$username}}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 

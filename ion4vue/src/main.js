@@ -22,6 +22,7 @@ Vue.prototype.$client_id = 6
 Vue.prototype.$client_secret = 'NqJYLx6oOGdRFhoDP50zU57jW4u9L0JkElE4QsqE'
 Vue.prototype.$grant_type = 'password'
 Vue.prototype.$token = 'xxx'
+Vue.prototype.$username = ''
 
 
 /* eslint-disable no-new */

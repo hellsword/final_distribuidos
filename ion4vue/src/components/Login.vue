@@ -4,7 +4,7 @@
         <img src=".././assets/logo.png"><br>
         <v-card-text>
             <v-form>
-                <v-text-field prepend-icon="person" label="RUT" type="text" v-model="email"></v-text-field>
+                <v-text-field prepend-icon="person" label="RUT" type="text" v-model="username"></v-text-field>
                 <v-text-field prepend-icon="lock" label="Contraseña" type="password" v-model="password"></v-text-field>
             </v-form>
         </v-card-text>
@@ -20,10 +20,12 @@
 
 <script>
 
+import Vue from 'vue'
+
 export default {
     data: function() {
         return{
-            email: "",
+            username: "",
             password: "",
             usuarios: "",
             error: ""
@@ -37,31 +39,33 @@ export default {
             console.log(this.$client_secret)
             console.log(this.$grant_type)
             console.log(this.$token)
-            this.$token = 'zzzzzzzzzzzzzzzzzzzz'
+            
 
-            this.$router.replace('zzz')
-            /*
+            
             var urlKeeps = 'http://192.168.0.13:8000/oauth/token';
             axios.post(urlKeeps, {
-                client_id: 6,
-                client_secret: 'NqJYLx6oOGdRFhoDP50zU57jW4u9L0JkElE4QsqE',
-                grant_type: 'password',
-                username: this.email,
+                //se asignan las variables globales ubicadas en main.js
+                client_id: this.$client_id,
+                client_secret: this.$client_secret,
+                grant_type: this.$grant_type,
+                username: this.username,
                 password: this.password
             },
             {
                 headers: { 'Content-Type': 'application/json' }
             }
             ).then(response => {
-                this.error = response.data.access_token,
-                this.email = '',
+                Vue.prototype.$token = response.data.access_token,
+                Vue.prototype.$username = this.username,
+                this.error = '',
+                this.username = '',
                 this.password = ''
-                //this.$router.replace('zzz')
+                this.$router.replace('zzz')
             }).catch(error => {
                 this.errors = 'No se pudo crear su servicio';
                 this.error = "Usuario y/o contraseña no validos"
             });
-            */
+            
 
 
             /*
