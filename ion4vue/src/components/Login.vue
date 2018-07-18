@@ -4,8 +4,8 @@
         <img src=".././assets/logo.png"><br>
         <v-card-text>
             <v-form>
-                <v-text-field prepend-icon="person" label="RUT" type="text" v-model="username"></v-text-field>
-                <v-text-field prepend-icon="lock" label="Contraseña" type="password" v-model="password"></v-text-field>
+                <v-text-field prepend-icon="person" label="RUT" type="text" v-model="username" :rules="usernameRules"></v-text-field>
+                <v-text-field prepend-icon="lock" label="Contraseña" type="password" v-model="password" :rules="passwordRules"></v-text-field>
             </v-form>
         </v-card-text>
         <v-card-actions>
@@ -28,13 +28,24 @@ export default {
             username: "",
             password: "",
             usuarios: "",
-            error: ""
+            error: "",
+            usernameRules: [
+                v => !!v || 'Este campo es requerido',
+                v => v.length <= 10 || 'RUT debe tener menos de 10 caracteres',
+                v => v.length >= 6 || 'RUT debe tener al menos 6 caracteres'
+            ],
+            passwordRules: [
+                v => !!v || 'Este campo es requerido',
+                v => v.length <= 14 || 'La contraseña debe tener menos de 14 caracteres',
+                v => v.length >= 6 || 'La contraseña debe tener al menos 6 caracteres'
+            ],
         }
     },
     methods: {
         //inicia sesion
         conectar: function(){
 
+            
             console.log(this.$client_id)
             console.log(this.$client_secret)
             console.log(this.$grant_type)
