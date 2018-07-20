@@ -8,7 +8,7 @@ class InfoContacto extends Model
 {
     protected $table = 'info_contacto';
 
-    protected $primarykey = 'id_user';
+    protected $primarykey = 'id';
 
     public $timestamps = false;
 

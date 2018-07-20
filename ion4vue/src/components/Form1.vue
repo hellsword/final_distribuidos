@@ -1,16 +1,21 @@
 <template>
-  <div id="app">
+  <div>
     
-    {{usuarios}}
       <v-form v-model="valid">
-        <v-text-field v-model="name" :rules="nameRules" :counter="10" label="RUT:" required></v-text-field>
-        <v-text-field v-model="name" :rules="nameRules" :counter="10" label="Nombres:" required></v-text-field>
-        <v-text-field v-model="name" :rules="nameRules" :counter="10" label="Apellidos:" required></v-text-field>
+        <v-text-field v-model="rut" :rules="rutRules" label="RUT:" v-on:keypress="isRut" required></v-text-field> 
         <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px">
           <v-text-field slot="activator" v-model="date" label="Fecha de nacimiento:" prepend-icon="event" readonly></v-text-field>
           <v-date-picker ref="picker" v-model="date" :max="new Date().toISOString().substr(0, 10)" min="1950-01-01" @change="save"></v-date-picker>
         </v-menu>
-        <v-btn color="primary" v-on:click="desconectar">blaaaa</v-btn>
+        <v-text-field v-model="nombres" :rules="genericRules" label="Nombres:" required></v-text-field>
+        <v-text-field v-model="apellidos" :rules="genericRules" label="Apellidos:" required></v-text-field>
+        <v-text-field v-model="titulo_acad" :rules="genericRules" label="Título:" required></v-text-field>
+        <v-text-field v-model="fono_movil" :rules="genericRules" :counter="20" maxlength="20" label="Nº Teléfono Móvil:" v-on:keypress="isNumber" required></v-text-field>
+        <v-text-field v-model="fono_fijo" :rules="genericRules" :counter="20" maxlength="20" label="Nº Teléfono Fijo:" v-on:keypress="isNumber" required></v-text-field>
+
+        <br>
+        <v-btn color="primary" fixed left round v-on:click="desconectar" >blaaaa</v-btn>
+        <v-btn color="primary" :disabled="!formIsValid" fixed right round v-on:click="siguiente" >Siguiente</v-btn>
     
       </v-form>
 
@@ -18,27 +23,44 @@
 </template>
 
 <script>
+import Vue from 'vue'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Form1',
   data () {
     return {
-      usuarios: '',
+      error: '',
+      rut: '',
+      nombres: '',
+      apellidos: '',
+      titulo_acad: '',
+      fono_movil: '',
+      fono_fijo: '',
       drawer: null,
       valid: false,
       date: null,
       menu: false,
-      name: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => v.length <= 10 || 'Name must be less than 10 characters'
+      rutRules: [
+        v => !!v || 'Este campo es requerido',
+        v => v.length >= 7 || 'El RUT debe tener al menos 7 caracteres'
       ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      genericRules: [
+        v => !!v || 'Este campo es requerido',
       ]
     }
+  },
+  computed: {
+      formIsValid () {
+        return (
+          this.rut && this.rut.length >= 7 &&
+          this.nombres &&
+          this.apellidos &&
+          this.titulo_acad &&
+          this.fono_movil &&
+          this.fono_fijo &&
+          this.date 
+        )
+      }
   },
   watch: {
     menu (val) {
@@ -48,28 +70,64 @@ export default {
   methods: {
       desconectar: function(){
 
-          console.log(this.$token)
-          /*
-          var urlKeeps = 'http://192.168.0.13:8000/api/details';
-                axios.post(urlKeeps,{
-                  headers: { 
-                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImE1NDI0MmUwYTBjNDEzNDU5NTJiZDU0MGVhZjI2MjZjNTRhNTNiMDg5MzZiMzU5NDU2NTJiYTY0NzQxOWRmZWM3MWIwZDA4ZTdkNDk1NzgzIn0.eyJhdWQiOiIxIiwianRpIjoiYTU0MjQyZTBhMGM0MTM0NTk1MmJkNTQwZWFmMjYyNmM1NGE1M2IwODkzNmIzNTk0NTY1MmJhNjQ3NDE5ZGZlYzcxYjBkMDhlN2Q0OTU3ODMiLCJpYXQiOjE1MzE4MDg3NDMsIm5iZiI6MTUzMTgwODc0MywiZXhwIjoxNTYzMzQ0NzQzLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.UPKlQJcoMPJjAKM5-ip2KOUlKuJe8YdrR-gReaYfPUpYutOO1V_C8k8UUPpbOfq5a3O2uauLAtfdhJ2yATitXg36aLXivWR5nEokfbhP-e-Jj0T7Zf1NCOBrk6XDO8hS7gW1UmT4JIIRIK4yrn6p2VHBXn1Yzpe8K33ZTv0PWYYb-C8Mz8oyCu4HG_N5RK2uwpkW2JRVcNDrCLdNOZm0bYxzcEytidKd2nC0bkoyW6pAGkbc16uKJqGOjtbLu8lWPqXr4-tiZFExoaonxxi0HtVwm1zzZDfsdLIZYf7vpBCfLK_vhAsZfOsrrvaTPZ-xo6q-JVykPMLqkn8AwGs3wPwgQHQw2ZWgOBiQdqw5j9dU-tj4QhPeuxdf97gytLKz5EMuzsauiVTeyz1JA3HnpZGgyTHOejzwLKcJ0nFggnkPQq6lqcUDLxNKGIX1FAIj5BbNKwTfSllhDXCVQpDcT5LfbUoVVR1D2PNKX4yCUzEmEaAmWyWDZo7lE1OEe39e_goOsC33JpTHJry5vuwH9wc2h4n5LGHNJKNajhqJSfAQLjSHx79Q3uUVB7Fx9SrahqVPyii9N1U1WMQAs1bXiY0naGsFoBfUZBQiOVAyOXOooNgYB6KGyYXFvd_TaRgMZ5kZ_EK6PFvlP2LqWLjb7dhY2u2A3ENt4m4_D5odj2M",
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json;charset=UTF-8',
-          "Access-Control-Allow-Origin": "*",
-                  },
-                }).then(response => {
-                    this.usuarios = response.data;
-                });
-           
-           console.log("datos:   "+this.usuarios)
-          */
+          //console.log(this.rutRules)
+
+          var urlKeeps = 'http://'+this.$ip_servidor+':8000/api/egresado';
+          axios.post(urlKeeps, {
+                //se asignan las variables globales ubicadas en main.js
+                id_usuario: this.$id_usuario,
+                rut: this.rut,
+                nombres: this.$nombres,
+            },
+            {
+                headers: { 'Authorization': 'Bearer '+this.$token }
+            }
+            ).then(response => {
+                console.log(response.data)
+            }).catch(error => {
+                this.errors = 'No se pudo crear su servicio';
+                this.error = "hay un error carajooo"
+            });
 
           //this.$router.replace('/')
       },
+      siguiente: function(){
+
+          this.respalda()
+          this.$router.replace('/form2')
+      },
+      respalda: function(){
+
+          //Se asignan los valores del formulario a las variables globales
+          Vue.prototype.$rut = this.rut
+          Vue.prototype.$nombres = this.nombres
+          Vue.prototype.$apellidos = this.apellidos
+          Vue.prototype.$nacimiento = this.date
+          Vue.prototype.$titulo_acad = this.titulo_acad
+          Vue.prototype.$fono_movil = this.fono_movil
+          Vue.prototype.$fono_fijo = this.fono_fijo
+      },
       save (date) {
         this.$refs.menu.save(date)
-      }
+      },
+      isNumber: function(evt) {
+          evt = (evt) ? evt : window.event;
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 32 && charCode !== 40 && charCode !== 41) {
+              evt.preventDefault();;
+          } else {
+              return true;
+          }
+      },
+      isRut: function(evt) {
+          evt = (evt) ? evt : window.event;
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 45 && charCode !== 75 && charCode !== 107) {
+              evt.preventDefault();;
+          } else {
+              return true;
+          }
+      },
   }
 }
 </script>

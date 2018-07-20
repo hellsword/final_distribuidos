@@ -8,7 +8,7 @@ class InfoEgreso extends Model
 {
     protected $table = 'info_egreso';
 
-    protected $primarykey = 'id_user';
+    protected $primarykey = 'id';
 
     public $timestamps = false;
 

@@ -8,7 +8,7 @@ class InfoPersonal extends Model
 {
     protected $table = 'info_personal';
 
-    protected $primarykey = 'id_user';
+    protected $primarykey = 'id';
 
     public $timestamps = false;
 
