@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                     <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
-                    <input type="text" name="password" placeholder="" value="">
+                    <input type="text" name="password" placeholder="min 6 de longitud" value="">
                 </div>
 
                 <div class="form-group">

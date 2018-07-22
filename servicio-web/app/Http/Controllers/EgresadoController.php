@@ -117,7 +117,7 @@ class EgresadoController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("InfoContacto.show", ["infocontacto"=>InfoContacto::findOrFail($id)]); 
     }
 
     /**

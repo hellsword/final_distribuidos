@@ -22,6 +22,7 @@ Route::get('/crear', function () {
 });
 
 Route::resource('/usuarios','UserController');
+Route::resource('/InfoContacto','InfoContactoController'); 
 Auth::routes();
 
 

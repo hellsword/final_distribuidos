@@ -13,7 +13,6 @@ class InfoContacto extends Model
     public $timestamps = false;
 
     protected $fillable = [
-    	'foto',
     	'celular',
     	'fono_fijo',
     	'email',

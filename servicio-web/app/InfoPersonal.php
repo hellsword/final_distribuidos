@@ -13,8 +13,10 @@ class InfoPersonal extends Model
     public $timestamps = false;
 
     protected $fillable = [
-    	'nombres',
+        'nombres',
+        'rut',
     	'apellidos',
-    	'fecha_nacimiento'
+        'fecha_nacimiento',
+        'foto'
     ];
 }

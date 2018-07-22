@@ -61,6 +61,7 @@
                                     
                                     @if( Auth::user()->tipo=='admin')
                                     <a class="dropdown-item" href="/crear">{{ __('Crear usuarios') }}</a>
+                                    <a class="dropdown-item" href="/usuarios">{{ __('List de usuarios') }}</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
