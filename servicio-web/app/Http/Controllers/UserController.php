@@ -27,9 +27,16 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
+
+        if ($request)
+        {
+        
+        $query=trim($request->get('searchText'));
+
         $usuarios =DB::table('users')
         ->join ('info_personal', 'users.id', '=' , 'info_personal.id')
         ->join('info_egreso','users.id','=','info_egreso.id')
+        ->where('info_personal.apellidos','LIKE','%'.$query.'%')
         ->select('users.id as id',
         'info_personal.rut as rut',
         'info_personal.nombres as nombres',
@@ -38,7 +45,8 @@ class UserController extends Controller
         'info_egreso.año_egreso as año_egreso',
         'info_egreso.fecha_examen as fecha_examen')
         ->get();
-        return view('usuarios.index',compact('usuarios'));
+        return view('usuarios.index',['usuarios'=>$usuarios,"searchText"=>$query]);
+        }
 
     }
     

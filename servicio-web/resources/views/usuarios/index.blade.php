@@ -1,8 +1,14 @@
 @extends('layouts.app')
 @section('content')
+
+<div class="row justify-content-center">
+    <div class="col-xs-6 col-md-4">
+        @include('usuarios.search')
+    </div>
+</div>
 <div class="conteiner">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-center">       
+       <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Lista de usuarios') }}</div>
                 <table class="table table-striped table-bordered table-condensed table-hover">
