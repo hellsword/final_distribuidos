@@ -23,6 +23,7 @@ Route::get('/crear', function () {
 
 Route::resource('/usuarios','UserController');
 Route::resource('/InfoContacto','InfoContactoController'); 
+Route::get('elimi/{id}','UserController@eliminar');
 Auth::routes();
 
 

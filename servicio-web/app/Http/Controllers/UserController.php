@@ -10,6 +10,10 @@ use App\InfoEgreso;
 use App\InfoPersonal;
 use Input;
 
+
+
+use Illuminate\Contracts\Auth\Guard;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,7 +53,7 @@ class UserController extends Controller
         $usuario->tipo=$request->get('tipo');
         $usuario->save(); 
 
-        return view('usuarios.create');  
+        return Redirect::to('usuarios');
     }
 
     public function show($id)
@@ -119,5 +123,13 @@ class UserController extends Controller
         
  
 
+    }
+
+    public function eliminar($id)
+    {
+        $usuario = User::find($id);
+        $usuario->delete();    
+        return Redirect::to('usuarios');
+        
     }
 }

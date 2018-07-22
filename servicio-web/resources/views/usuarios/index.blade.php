@@ -14,7 +14,7 @@
                         <th>Titulo</th>
                         <th>Año de egreso</th>
                         <th>Fecha de examen</th>
-                        <th>Medio de contacto</th>
+                        <th>Acciones</th>
 				    </thead>
                     @foreach ($usuarios as $usu)
                     <tr>
@@ -27,7 +27,10 @@
                         <td>{{$usu -> fecha_examen}}</td>
                         <td>
                             <a href="{{URL::action('UserController@show', $usu -> id)}}" class="btn btn-primary">Ver...</a>
-                            <a href="{{URL::action('UserController@edit', $usu -> id)}}" class="btn btn-primary">Editar</a>
+                            <a href="{{URL::action('UserController@edit', $usu -> id)}}" class="btn btn-warning">Editar</a>
+                            <a href="/elimi/{{ $usu -> id}}" class="btn btn-danger">Eliminar</a>
+                     
+                
                         </td>
                     </tr>
                     @endforeach
