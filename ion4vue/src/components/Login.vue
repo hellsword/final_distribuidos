@@ -3,10 +3,8 @@
     <div>
         
         <v-card flat>
-        <v-card-media
-          src="https://learnchile.cl/wp-content/uploads/2017/04/UCM.png"
-          height="200px">
-        </v-card-media>
+            <img id="foto_img" src="../assets/logo2.jpg" height="200px">
+        
         </v-card>
 
         <v-card-text>
@@ -114,7 +112,6 @@ export default {
                 this.password = '',
                 this.error = ''
                 this.$router.replace('form1')
-                //this.$router.replace('form1')
             }).catch(error => {
                 this.error = "ERROR"
             });

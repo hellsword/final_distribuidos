@@ -31,12 +31,9 @@
                         <td>{{$usu -> titulo}}</td>
                         <td>{{$usu -> año_egreso}}</td>
                         <td>{{$usu -> fecha_examen}}</td>
-                        <td>
-                            <a href="{{URL::action('UserController@show', $usu -> id)}}" class="btn btn-primary">Ver...</a>
+                        <td><a href="{{URL::action('UserController@show', $usu -> id)}}" class="btn btn-primary">Ver...</a>
                             <a href="{{URL::action('UserController@edit', $usu -> id)}}" class="btn btn-warning">Editar</a>
                             <a href="/elimi/{{ $usu -> id}}" class="btn btn-danger">Eliminar</a>
-                     
-                
                         </td>
                     </tr>
                     @endforeach

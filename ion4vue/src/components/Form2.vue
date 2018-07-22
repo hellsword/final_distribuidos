@@ -6,14 +6,14 @@
           <v-text-field :rules="genericRules" slot="activator" v-model="date" label="Fecha Examen de Titulo:" prepend-icon="event" readonly></v-text-field>
           <v-date-picker ref="picker" v-model="date" :max="new Date().toISOString().substr(0, 10)" min="1950-01-01" @change="save"></v-date-picker>
         </v-menu>
-        <v-text-field v-model="facebook" :rules="genericRules" :counter="30" label="Facebook:" required></v-text-field>
-        <v-text-field v-model="direccion" :rules="genericRules" :counter="30" label="Dirección Actual:" required></v-text-field>
+        <v-text-field v-model="facebook" :rules="genericRules" label="Facebook:" required></v-text-field>
+        <v-text-field v-model="direccion" :rules="genericRules" maxlength="100" label="Dirección Actual:" required></v-text-field>
         <v-text-field v-model="anyo_ingreso" :rules="yearRules" :counter="4" label="Año de Ingreso:" v-on:keypress="isNumber" maxlength="4" required></v-text-field>
         <v-text-field v-model="anyo_egreso" :rules="yearRules" :counter="4" label="Año de Egreso:" v-on:keypress="isNumber" maxlength="4" required></v-text-field>
-        <v-text-field v-model="titulo_tm" :rules="genericRules" :counter="30" label="Titulo Tesis o Memoria:" required></v-text-field>
-        <v-text-field v-model="profesor" :rules="genericRules" :counter="30" label="Profesor Guía:" required></v-text-field>
+        <v-text-field v-model="titulo_tm" :rules="genericRules" maxlength="100" label="Titulo Tesis o Memoria:" required></v-text-field>
+        <v-text-field v-model="profesor" :rules="genericRules" maxlength="100" label="Profesor Guía:" required></v-text-field>
 
-        <br>
+     
         <v-btn color="warning" fixed left round v-on:click="anterior" >Anterior</v-btn>
         <v-btn color="primary" :disabled="!formIsValid" fixed right round v-on:click="siguiente" >Siguiente</v-btn>
 

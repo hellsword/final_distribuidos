@@ -21,7 +21,8 @@
         <v-text-field v-model="email" :rules="emailRules" label="Email Personal:" required></v-text-field>
 
         <p class="image is-4by3">
-            <img id="foto_img" src="https://media.minutouno.com/adjuntos/150/imagenes/028/526/0028526339.jpg">
+            <img id="foto_img" v-if="imagePath == ''" src="../assets/0028526339.jpg">
+            <img id="foto_img" v-if="imagePath != ''" :src="imagePath">
         </p>
 
         <br>
@@ -37,6 +38,8 @@
                 {{ files[0].name }}
             </span>
         </b-field>
+
+        <!--  <v-btn color="success" fixed left round v-on:click="tomarFoto" >Tomar foto</v-btn>  -->
         
         <br>
         <v-btn color="warning" fixed left round v-on:click="anterior" >Anterior</v-btn>
@@ -53,6 +56,11 @@ import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 
 Vue.use(Buefy)
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    console.log(navigator.camera);
+}
 
 export default {
   name: 'Form3',
@@ -80,13 +88,14 @@ export default {
           image: [],
           url: []
       },
+      imagePath: '',
     }
   },
   computed: {
       formIsValid () {
         return (
           /.+@.+/.test(this.email) &&
-          this.files.length > 0 
+          this.files.length > 0 || this.imagePath != ''
         )
       }
   },
@@ -189,6 +198,37 @@ export default {
       save (date) {
         this.$refs.menu.save(date)
       },
+      tomarFoto: function(){
+
+          if (navigator.camera) {
+            navigator.camera.getPicture(this.setPicture, this.error, { quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL
+            });
+          }
+          else{
+              // If the navigator.camera is not available display generic error to the user.
+              this.error();
+          }
+      },
+      // Set the picture path in the data of the vue
+      // this action will automatically update the view.
+      setPicture(imagePath){
+        this.imagePath = "data:image/jpeg;base64," + imagePath;
+
+        this.imagen.url.push('foto.jpg');
+        
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(imagePath);
+        
+        fileReader.onload = (event) => {
+            this.imagen.image.push(event.target.result);
+        }
+
+      },
+      error(){
+        console.log("error")
+      }
+
   }
 }
 </script>

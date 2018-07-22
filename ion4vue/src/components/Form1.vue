@@ -13,7 +13,7 @@
         <v-text-field v-model="fono_movil" :rules="genericRules" :counter="20" maxlength="20" label="Nº Teléfono Móvil:" v-on:keypress="isNumber" required></v-text-field>
         <v-text-field v-model="fono_fijo" :rules="genericRules" :counter="20" maxlength="20" label="Nº Teléfono Fijo:" v-on:keypress="isNumber" required></v-text-field>
 
-        <br>
+       
         <v-btn color="primary" fixed left round v-on:click="desconectar" >blaaaa</v-btn>
         <v-btn color="primary" :disabled="!formIsValid" fixed right round v-on:click="siguiente" >Siguiente</v-btn>
     
@@ -42,7 +42,8 @@ export default {
       menu: false,
       rutRules: [
         v => !!v || 'Este campo es requerido',
-        v => v.length >= 7 || 'El RUT debe tener al menos 7 caracteres'
+        v => v.length >= 7 || 'El RUT debe tener al menos 7 caracteres',
+        v => this.validaRut() || 'RUT no valido'
       ],
       genericRules: [
         v => !!v || 'Este campo es requerido',
@@ -52,7 +53,7 @@ export default {
   computed: {
       formIsValid () {
         return (
-          this.rut && this.rut.length >= 7 &&
+          this.rut && this.rut.length >= 7 && this.validaRut() &&
           this.nombres &&
           this.apellidos &&
           this.titulo_acad &&
@@ -65,29 +66,18 @@ export default {
   watch: {
     menu (val) {
       val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
+    },
+    rut: function(val, oldVal) {
+ 
+ 
+
     }
   },
   methods: {
       desconectar: function(){
 
-          //console.log(this.rutRules)
-
-          var urlKeeps = 'http://'+this.$ip_servidor+':8000/api/egresado';
-          axios.post(urlKeeps, {
-                //se asignan las variables globales ubicadas en main.js
-                id_usuario: this.$id_usuario,
-                rut: this.rut,
-                nombres: this.$nombres,
-            },
-            {
-                headers: { 'Authorization': 'Bearer '+this.$token }
-            }
-            ).then(response => {
-                console.log(response.data)
-            }).catch(error => {
-                this.errors = 'No se pudo crear su servicio';
-                this.error = "hay un error carajooo"
-            });
+          console.log( this.validaRut() )
+          //console.log( rut_temp )
 
           //this.$router.replace('/')
       },
@@ -128,6 +118,26 @@ export default {
               return true;
           }
       },
+      validaRut: function() {
+
+          var rut_temp = this.rut.replace(/-/gi, ''); 
+          var b = rut_temp.slice(0, rut_temp.length-1)+'-'+rut_temp.slice(rut_temp.length-1) 
+
+          var i = 0
+          if(b.match(/^([0-9])+\-([kK0-9])+$/)){
+            b = b.split("-");
+            var a=b[0].split(""),c=2,d=0;
+            
+            for(i=a.length-1;0<=i;i--)
+              c = 7<c?2:c,d+=parseInt(a[i])*parseInt(c++);
+              
+            a = 11-d%11;
+            return(11==a?0:10==a?"k":a)==b[1].toLowerCase()
+          }
+          
+          return!1
+  
+      }
   }
 }
 </script>

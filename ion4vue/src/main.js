@@ -4,6 +4,7 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import axios from 'axios'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+import 'vuetify/dist/estilos.css' 
 //import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 
 import App from './App'
@@ -31,14 +32,20 @@ Vue.prototype.$id_usuario = ''
 Vue.prototype.$rut = ''
 Vue.prototype.$nombres = ''
 Vue.prototype.$apellidos = ''
-Vue.prototype.$nacimiento = ''
+Vue.prototype.$nacimiento = null
 Vue.prototype.$titulo_acad = ''
-//Form2
-Vue.prototype.$email = ''
 Vue.prototype.$fono_movil = ''
 Vue.prototype.$fono_fijo = ''
+//Form2
 Vue.prototype.$facebook = ''
 Vue.prototype.$direccion = ''
+Vue.prototype.$anyo_ingreso = ''
+Vue.prototype.$anyo_egreso = ''
+Vue.prototype.$fecha_examen = ''
+Vue.prototype.$titulo_tm = ''
+Vue.prototype.$profesor = ''
+
+
 
 
 /* eslint-disable no-new */

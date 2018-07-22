@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.fenrir.ion4vue"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.fenrir.ion4vue"
     }
   },
   "dependent_plugins": {}

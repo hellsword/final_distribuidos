@@ -74,5 +74,9 @@
     {
         "merged": "C:\\Users\\DarkAsus\\Documents\\GitHub\\final_distribuidos\\ion4vue\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-xxhdpi_screen.png.flat",
         "source": "C:\\Users\\DarkAsus\\Documents\\GitHub\\final_distribuidos\\ion4vue\\platforms\\android\\app\\src\\main\\res\\drawable-port-xxhdpi\\screen.png"
+    },
+    {
+        "merged": "C:\\Users\\DarkAsus\\Documents\\GitHub\\final_distribuidos\\ion4vue\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml_camera_provider_paths.xml.flat",
+        "source": "C:\\Users\\DarkAsus\\Documents\\GitHub\\final_distribuidos\\ion4vue\\platforms\\android\\app\\src\\main\\res\\xml\\camera_provider_paths.xml"
     }
 ]
