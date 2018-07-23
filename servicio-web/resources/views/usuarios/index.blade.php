@@ -39,8 +39,14 @@
                     @endforeach
                 </table>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                @include('usuarios.searchpdf')
+                </div>
+            </div>
         </div>
     <div>
-</div>   
+</div> 
 
 @endsection
