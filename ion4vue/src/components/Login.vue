@@ -1,15 +1,29 @@
 <template>
 
     <div>
-        
+        <v-layout row justify-center>
+            <v-dialog v-model="dialog" persistent max-width="290">
+            <v-card>
+                <v-card-title class="headline">ERROR: acceso restringido</v-card-title>
+                <v-card-text>Esta aplicación móvil esta habilitada sólo para estudiantes egresados que se encuentren debidamente inscritos.</v-card-text>
+                <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green darken-1" flat @click.native="dialog = false">Aceptar</v-btn>
+                </v-card-actions>
+            </v-card>
+            </v-dialog>
+        </v-layout>
+
+
+    
         <v-card flat>
-            <img id="foto_img" src="../assets/logo2.jpg" height="200px">
+            <img id="foto_img" src="../assets/logo.png" height="200px">
         
         </v-card>
 
         <v-card-text>
             <v-form>
-                <v-text-field prepend-icon="person" label="RUT" type="text" v-model="username" :rules="usernameRules"></v-text-field>
+                <v-text-field prepend-icon="person" label="Usuario" type="text" v-model="username" :rules="usernameRules"></v-text-field>
                 <v-text-field prepend-icon="lock" label="Contraseña" type="password" v-model="password" :rules="passwordRules"></v-text-field>
             </v-form>
         </v-card-text>
@@ -50,6 +64,7 @@ export default {
                 v => v.length <= 14 || 'La contraseña debe tener menos de 14 caracteres',
                 v => v.length >= 6 || 'La contraseña debe tener al menos 6 caracteres'
             ],
+            dialog: false,
         }
     },
     methods: {
@@ -111,9 +126,12 @@ export default {
                 this.username = '',
                 this.password = '',
                 this.error = ''
-                this.$router.replace('form1')
+                if(response.data.tipo != 'admin')
+                    this.$router.replace('form1')
+                else
+                    this.dialog = true
             }).catch(error => {
-                this.error = "ERROR"
+                this.error = "ERROR: acceso restringido"
             });
 
         }

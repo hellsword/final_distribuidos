@@ -2,19 +2,24 @@
   <div>
 
     <!-- Dialog que muestra si se puedieron ingresar o no los datos -->
-    <v-dialog v-model="dialog" width="500">
-      <v-card>
-          <v-card-text v-if="exito == true">Datos ingresados exitosamente</v-card-text>
-          <v-card-text v-if="exito == false">No se han podido ingresar los datos</v-card-text>
+    <v-layout row justify-center>
+            <v-dialog v-model="dialog" persistent max-width="290">
+            <v-card>
+                <v-card-title v-if="exito == true" class="headline">Felicidades</v-card-title>
+                <v-card-text v-if="exito == true">Los datos han sido ingresados correctamente.</v-card-text>
 
-          <v-divider></v-divider>
+                <v-card-title v-if="exito == false" class="headline">Lo sentimos</v-card-title>
+                <v-card-text v-if="exito == false">Hubo un problema al enviar o ingresar sus datos.</v-card-text>
 
-          <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" flat @click="dialog = false">Aceptar </v-btn>
-          </v-card-actions>
-      </v-card>
-    </v-dialog>
+                <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn v-if="exito == true" color="green darken-1" flat v-on:click="Salir">Salir</v-btn>
+                <v-btn v-if="exito == false" color="green darken-1" flat @click.native="dialog = false">Aceptar</v-btn>
+                </v-card-actions>
+            </v-card>
+            </v-dialog>
+        </v-layout>
+
 
     
     <v-form v-model="valid">
@@ -227,6 +232,10 @@ export default {
       },
       error(){
         console.log("error")
+      },
+      Salir: function(){
+          this.dialog = false
+          this.$router.replace('/')
       }
 
   }

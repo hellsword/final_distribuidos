@@ -14,7 +14,6 @@
         <v-text-field v-model="fono_fijo" :rules="genericRules" :counter="20" maxlength="20" label="Nº Teléfono Fijo:" v-on:keypress="isNumber" required></v-text-field>
 
        
-        <v-btn color="primary" fixed left round v-on:click="desconectar" >blaaaa</v-btn>
         <v-btn color="primary" :disabled="!formIsValid" fixed right round v-on:click="siguiente" >Siguiente</v-btn>
     
       </v-form>
@@ -74,13 +73,6 @@ export default {
     }
   },
   methods: {
-      desconectar: function(){
-
-          console.log( this.validaRut() )
-          //console.log( rut_temp )
-
-          //this.$router.replace('/')
-      },
       siguiente: function(){
 
           this.respalda()
