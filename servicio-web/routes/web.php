@@ -24,6 +24,7 @@ Route::get('/crear', function () {
 Route::resource('/usuarios','UserController');
 Route::resource('/InfoContacto','InfoContactoController'); 
 Route::get('elimi/{id}','UserController@eliminar');
+Route::get('pdf','PdfController@generarpdf');
 Auth::routes();
 
 
