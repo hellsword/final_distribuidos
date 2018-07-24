@@ -44,7 +44,8 @@ class UserController extends Controller
         'info_egreso.titulo as titulo',
         'info_egreso.año_egreso as año_egreso',
         'info_egreso.fecha_examen as fecha_examen')
-        ->get();
+        ->orderBy('info_egreso.fecha_examen', 'asc')
+        ->paginate(1);
         return view('usuarios.index',['usuarios'=>$usuarios,"searchText"=>$query]);
         }
 

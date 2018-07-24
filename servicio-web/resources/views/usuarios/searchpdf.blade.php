@@ -3,12 +3,12 @@
 	<div class="input-group">
         <div class="form-group">
             <label for="rango_in" class="col-md-4 col-form-label text-md-right">{{ __('Rango inicial') }}</label>
-            <input type="date" name="rango_in" placeholder="">
+            <input type="date" name="rango_in" placeholder="" required>
         </div>
 
         <div class="form-group">
             <label for="rango_fn" class="col-md-4 col-form-label text-md-right">{{ __('Rango final') }}</label>
-            <input type="date" name="rango_fn" placeholder="">
+            <input type="date" name="rango_fn" placeholder="" required>
         </div>
 
         <div class="form-group">

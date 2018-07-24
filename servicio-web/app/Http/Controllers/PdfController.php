@@ -32,6 +32,16 @@ class PdfController extends Controller
         $inicial =$request->get('rango_in');
         $fin =$request->get('rango_fn');
         
+        $cant_us =DB::table('users')
+        ->join ('info_personal', 'users.id', '=' , 'info_personal.id')
+        ->join('info_egreso','users.id','=','info_egreso.id')
+        ->whereDate('info_egreso.fecha_examen','>=',$inicial)
+        ->whereDate('info_egreso.fecha_examen','<=',$fin)
+        ->count();
+
+        $fecha_actual=new \DateTime();
+        //$fecha_actual->format('d-m-Y H:i:s');
+
         $usuarios =DB::table('users')
         ->join ('info_personal', 'users.id', '=' , 'info_personal.id')
         ->join('info_egreso','users.id','=','info_egreso.id')
@@ -45,9 +55,11 @@ class PdfController extends Controller
         'info_egreso.año_egreso as año_egreso',
         'info_egreso.fecha_examen as fecha_examen')
         ->get();
-        //return $usuarios;
-        $pdf =PDF::loadView('vistapdf',['usuarios'=>$usuarios]);
+        
+        $pdf =PDF::loadView('vistapdf',['usuarios'=>$usuarios,'cant_us'=>$cant_us,'fecha_actual'=>$fecha_actual]);
+        //return $fecha_actual->format('Y-m-d');
         return $pdf->download('archivo.pdf');
+       // return $pdf->stream();
         
     }
 }

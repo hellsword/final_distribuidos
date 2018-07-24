@@ -40,7 +40,9 @@
                         </td>
                     </tr>
                     @endforeach
+                    
                 </table>
+                {{ $usuarios->links() }}
             </div>
 
             <div class="row">
