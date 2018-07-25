@@ -55,11 +55,14 @@ class PdfController extends Controller
         'info_egreso.año_egreso as año_egreso',
         'info_egreso.fecha_examen as fecha_examen')
         ->get();
-        
-        $pdf =PDF::loadView('vistapdf',['usuarios'=>$usuarios,'cant_us'=>$cant_us,'fecha_actual'=>$fecha_actual]);
-        //return $fecha_actual->format('Y-m-d');
-        return $pdf->download('archivo.pdf');
-       // return $pdf->stream();
+        if($cant_us>0){
+            $pdf =PDF::loadView('vistapdf',['usuarios'=>$usuarios,'cant_us'=>$cant_us,'fecha_actual'=>$fecha_actual]);
+            //return $fecha_actual->format('Y-m-d');
+            return $pdf->download('archivo.pdf');
+            // return $pdf->stream();
+        }else{
+            return Redirect::to('usuarios')->with('success','No se encontraron alumnos en este rango de tiempo');
+        }
         
     }
 }

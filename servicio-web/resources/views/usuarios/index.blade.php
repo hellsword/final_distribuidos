@@ -7,9 +7,14 @@
     </div>
 </div>
 
-<a href="javascript:demoFromHTML()" class="button">Run Code</a>
-
-<div class="conteiner" id="contenido_pdf">
+<div class="container">
+    @if(session('success'))
+        <div class="alert alert-success">
+             {{session('success')}}
+        </div>
+    @endif
+</div>
+<div class="container" id="contenido_pdf">
     <div class="row justify-content-center">       
        <div class="col-md-8">
             <div class="card">

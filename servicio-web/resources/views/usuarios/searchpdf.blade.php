@@ -10,9 +10,9 @@
             <label for="rango_fn" class="col-md-4 col-form-label text-md-right">{{ __('Rango final') }}</label>
             <input type="date" name="rango_fn" placeholder="" required>
         </div>
-
+        
         <div class="form-group">
-            <center><button class="btn btn-success" type="submit">Generar PDF</button>            
+            <div class="col-md-8"><button class="btn btn-success" type="submit">Generar PDF</button></div>        
         </div>
 	</div>
 </div>
