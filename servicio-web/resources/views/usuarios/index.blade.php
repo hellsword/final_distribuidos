@@ -9,8 +9,8 @@
 
 <div class="maincontent">
     <div class="contentinner">
-    <h4 class="widgettitle">{{ __('Lista de usuarios') }}</h4>
-        @include('usuarios.search')
+    
+        
     
     <div class="container">
         @if(session('success'))
@@ -19,7 +19,7 @@
             </div>
         @endif
     </div>
-  
+    <h4 class="widgettitle">{{ __('Lista de usuarios') }}</h4>
     <div class="card">
         <table class="table table-bordered">
             <thead>
@@ -52,9 +52,11 @@
         </table>
         {{ $usuarios->links() }}
     </div>
+
+    @include('usuarios.search')
     <br>
-    <h4 class="widgettitle">{{ __('Generar reporte') }}</h4>
-    <br>
+    
+    
     @include('usuarios.searchpdf')
   
     </div>
