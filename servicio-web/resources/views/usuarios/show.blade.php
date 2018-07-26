@@ -1,97 +1,101 @@
 @extends('layouts.app')
 @section('content')
-<div class="conteiner">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Informacion detallada') }}</div>
-                    <table>
-                        <thead>
-                            
-                            <center><img  src="{{$infopersonal->foto}}"width="200" height="200" ></center>
-                        </thead>
 
+<div class="maincontent">
+        	<div class="contentinner">
+    
+
+                <h4 class="widgettitle">{{ __('Informacion detallada') }}</h4>
+                <table class="table table-bordered">
+                        <colgroup>
+                            <col class="con0" />
+                            <col class="con1" />
+                        </colgroup>
                         <thead>
+                          <tr>
+                            <td>Foto del usuario</td>
+                            <td><img  src="{{$infopersonal->foto}}"width="200" height="200" ></td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
                             <td>Rut</td>
                             <td>{{$infopersonal->rut}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Nombres</td>
                             <td>{{$infopersonal->nombres}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Apellidos</td>
                             <td>{{$infopersonal->apellidos}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Fecha de nacimiento</td>
                             <td>{{$infopersonal->fecha_nacimiento}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Celular</td>
                             <td>{{$infocontacto->celular}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Telefono fijo</td>
                             <td>{{$infocontacto->fono_fijo}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Email</td>
                             <td>{{$infocontacto->email}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Facebook</td>
                             <td>{{$infocontacto->facebook}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Direccion</td>
                             <td>{{$infocontacto->direccion}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Titulo</td>
                             <td>{{$infoegreso->titulo}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Año ingreso</td>
                             <td>{{$infoegreso->año_ingreso}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Año egreso</td>
                             <td>{{$infoegreso->año_egreso}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Fecha examen</td>
                             <td>{{$infoegreso->fecha_examen}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Titulo de tesis o memoria</td>
                             <td>{{$infoegreso->titulo_tm}}</td>
-                        </thead>
+                        </tr>
 
-                        <thead>
+                        <tr>
                             <td>Profesor Guia</td>
                             <td>{{$infoegreso->prof_guia}}</td>
-                        </thead>
+                        </tr>
 
 
-
+                     </tbody>
                     </table>
-
-                </div>
-        </div>
-    <div>
-</div>   
+    </div>
+</div>
 @endsection

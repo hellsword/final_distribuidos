@@ -1,102 +1,104 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Editar informacion del usuario') }}</div>
 
-                <form class="form-group" method="POST" action="/usuarios/{{$infocontacto->id}}" enctype="multipart/form-data">
+<div class="maincontent">
+    <div class="contentinner">
+        <h4 class="widgettitle"> {{ __('Editar informacion del usuario') }}</h4>
+        <div class="widgetcontent">
+
+                <form class="stdform" method="POST" action="/usuarios/{{$infocontacto->id}}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
 
-                <div class="form-group">
-                    <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
-                    <input type="file" name="foto"/>
-                </div>
+                <p>
+                    <label>{{ __('Foto') }}</label>
+                    <span class="field">
+                        <input type="file" class="uniform-file" name="foto">
+                    </span>
+                </p>
 
-                <div class="form-group">
-                    <label for="nombres" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
-                    <input type="text" name="nombres" placeholder="" value="{{$infopersonal->nombres}}">
-                </div>
+                <p>
+                    <label for="nombres">{{ __('Nombres') }}</label>
+                    <input type="text" name="nombres"class="input-large" placeholder="" value="{{$infopersonal->nombres}}">
+                </p>
 
-                <div class="form-group">
-                    <label for="apellidos" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
-                    <input type="text" name="apellidos" placeholder="" value="{{$infopersonal->apellidos}}">
-                </div>
+                <p>
+                    <label for="apellidos" >{{ __('Apellidos') }}</label>
+                    <input type="text" name="apellidos" class="input-large" placeholder="" value="{{$infopersonal->apellidos}}">
+                </p>
 
-                <div class="form-group">
-                    <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-right">{{ __('Fecha nacimiento') }}</label>
-                    <input type="date" name="fecha_nacimiento" placeholder="" value="{{$infopersonal->fecha_nacimiento}}">
-                </div>
-
-
-
-                 <div class="form-group">
-                    <label for="celular" class="col-md-4 col-form-label text-md-right">{{ __('Celular') }}</label>
-                    <input type="text" name="celular" placeholder="" value="{{$infocontacto->celular}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="fono_fijo" class="col-md-4 col-form-label text-md-right">{{ __('Telefono fijo') }}</label>
-                    <input type="text" name="fono_fijo" placeholder="" value="{{$infocontacto->fono_fijo}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email ') }}</label>
-                    <input type="text" name="email" placeholder="" value="{{$infocontacto->email}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="facebook" class="col-md-4 col-form-label text-md-right">{{ __('Facebook') }}</label>
-                    <input type="text" name="facebook" placeholder="" value="{{$infocontacto->facebook}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="direccion" class="col-md-4 col-form-label text-md-right">{{ __('Direccion') }}</label>
-                    <input type="text" name="direccion" placeholder="" value="{{$infocontacto->direccion}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="titulo" class="col-md-4 col-form-label text-md-right">{{ __('Titulo') }}</label>
-                    <input type="text" name="titulo" placeholder="" value="{{$infoegreso->titulo}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="año_ingreso" class="col-md-4 col-form-label text-md-right">{{ __('Año de ingreso') }}</label>
-                    <input type="text" name="año_ingreso" placeholder="" value="{{$infoegreso->año_ingreso}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="año_egreso" class="col-md-4 col-form-label text-md-right">{{ __('Año de egreso') }}</label>
-                    <input type="text" name="año_egreso" placeholder="" value="{{$infoegreso->año_egreso}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="fecha_examen" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de examen') }}</label>
-                    <input type="date" name="fecha_examen" placeholder="" value="{{$infoegreso->fecha_examen}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="titulo_tm" class="col-md-4 col-form-label text-md-right">{{ __('Titulo de tesis o memoria') }}</label>
-                    <input type="text" name="titulo_tm" placeholder="" value="{{$infoegreso->titulo_tm}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="prof_guia" class="col-md-4 col-form-label text-md-right">{{ __('Profesor guia') }}</label>
-                    <input type="text" name="prof_guia" placeholder="" value="{{$infoegreso->prof_guia}}">
-                </div>
+                <p>
+                    <label for="fecha_nacimiento">{{ __('Fecha nacimiento') }}</label>
+                    <input type="date" name="fecha_nacimiento" class="input-large" placeholder="" value="{{$infopersonal->fecha_nacimiento}}">
+                </p>
 
 
-                <div class="form-group">
+
+                 <p>
+                    <label for="celular">{{ __('Celular') }}</label>
+                    <input type="text" name="celular" class="input-large" placeholder="" value="{{$infocontacto->celular}}">
+                </p>
+
+                <p>
+                    <label for="fono_fijo" >{{ __('Telefono fijo') }}</label>
+                    <input type="text" name="fono_fijo" class="input-large" placeholder="" value="{{$infocontacto->fono_fijo}}">
+                </p>
+
+                <p>
+                    <label for="email" >{{ __('Email ') }}</label>
+                    <input type="text" name="email" class="input-large" placeholder="" value="{{$infocontacto->email}}">
+                </p>
+
+                <p>
+                    <label for="facebook">{{ __('Facebook') }}</label>
+                    <input type="text" name="facebook" class="input-large" placeholder="" value="{{$infocontacto->facebook}}">
+                </p>
+
+                <p>
+                    <label for="direccion" >{{ __('Direccion') }}</label>
+                    <input type="text" name="direccion" class="input-large" placeholder="" value="{{$infocontacto->direccion}}">
+                </p>
+
+                <p>
+                    <label for="titulo" >{{ __('Titulo') }}</label>
+                    <input type="text" name="titulo" class="input-large"  placeholder="" value="{{$infoegreso->titulo}}">
+                </p>
+
+                <p>
+                    <label for="año_ingreso" >{{ __('Año de ingreso') }}</label>
+                    <input type="text" name="año_ingreso" class="input-large" placeholder="" value="{{$infoegreso->año_ingreso}}">
+                </p>
+
+                <p>
+                    <label for="año_egreso" >{{ __('Año de egreso') }}</label>
+                    <input type="text" name="año_egreso" class="input-large" placeholder="" value="{{$infoegreso->año_egreso}}">
+                </p>
+
+                <p>
+                    <label for="fecha_examen">{{ __('Fecha de examen') }}</label>
+                    <input type="date" name="fecha_examen" class="input-large" placeholder="" value="{{$infoegreso->fecha_examen}}">
+                </p>
+
+                <p>
+                    <label for="titulo_tm">{{ __('Titulo de tesis o memoria') }}</label>
+                    <input type="text" name="titulo_tm" class="input-large" placeholder="" value="{{$infoegreso->titulo_tm}}">
+                </p>
+
+                <p>
+                    <label for="prof_guia" >{{ __('Profesor guia') }}</label>
+                    <input type="text" name="prof_guia" class="input-large" placeholder="" value="{{$infoegreso->prof_guia}}">
+                </p>
+
+
+                <p class="stdformbutton">
                     <center><button class="btn btn-primary" type="submit">Actualizar</button>
-                    <a href="/usuarios" class="btn btn-danger">Cancelar</a></center>
-                </div>
+                    <a href="/usuarios" class="btn">Cancelar</a></center>
+                </p>
                 </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+              </div><!--widgetcontent-->
+    </div><!--contentinner-->
+</div><!--mainco-->
+   
 
 @endsection

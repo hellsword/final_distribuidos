@@ -13,10 +13,10 @@
 </div><!--pagetitle-->
 
 <div class="maincontent">
-
-    <br>
-    @include('usuarios.search')
-
+    <div class="contentinner">
+    <h4 class="widgettitle">{{ __('Lista de usuarios') }}</h4>
+        @include('usuarios.search')
+    
     <div class="container">
         @if(session('success'))
             <div class="alert alert-success">
@@ -26,8 +26,7 @@
     </div>
   
     <div class="card">
-        <div class="card-header">{{ __('Lista de usuarios') }}</div>
-        <table class="table table-striped table-bordered table-condensed table-hover">
+        <table class="table table-bordered">
             <thead>
 			    <th>ID</th>
 			    <th>RUT</th>
@@ -38,6 +37,7 @@
                 <th>Fecha de examen</th>
                 <th>Acciones</th>
 		    </thead>
+            <tbody>
             @foreach ($usuarios as $usu)
             <tr>
                 <td>{{$usu -> id}}</td>
@@ -53,15 +53,16 @@
                 </td>
             </tr>
             @endforeach
-            
+            </tbody>
         </table>
         {{ $usuarios->links() }}
     </div>
-
+    <br>
+    <h4 class="widgettitle">{{ __('Generar reporte') }}</h4>
     <br>
     @include('usuarios.searchpdf')
   
-
+    </div>
 </div> 
 
 @endsection

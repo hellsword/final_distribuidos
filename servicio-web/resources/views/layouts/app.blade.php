@@ -3,15 +3,16 @@
 <head>
 
     <!-- CSS y JS de la plantilla Katniss -->
-    <link rel="stylesheet" href="css/style.default.css" type="text/css" />
-    <link rel="stylesheet" href="prettify/prettify.css" type="text/css" />
-    <script type="text/javascript" src="prettify/prettify.js"></script>
-    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.9.2.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="{{ asset('assets/style.css') }}">-->
+    <link rel="stylesheet" href="{{ asset('css/style.default.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('prettify/prettify.css')}}" type="text/css" />
+    <script type="text/javascript" src="{{ asset('prettify/prettify.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-migrate-1.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.cookie.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/custom.js')}}"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -44,8 +45,9 @@
             <div class="leftmenu">        
                 <ul class="nav nav-tabs nav-stacked">
                     <li class="nav-header">Main Navigation</li>
-                    <li><a href="dashboard.html"><span class="icon-align-justify"></span> Dashboard</a></li>
-                    <li><a href="media.html"><span class="icon-picture"></span> Media</a></li>
+                    <li><a class="dropdown-item" href="/crear"><i class="icon-user"></i>  {{ __('Crear usuarios') }}</a></li>
+                    <li><a class="dropdown-item" href="/usuarios"><span class="icon-align-justify"></span>{{ __('Lista de usuarios') }}</a></li>
+                    
                 </ul>
             </div><!--leftmenu-->
             
@@ -76,16 +78,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    @if( Auth::user()->tipo=='admin')
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/crear">{{ __('Crear usuarios') }}</a></li>
-                                        <li><a class="dropdown-item" href="/usuarios">{{ __('Lista de usuarios') }}</a></li>
-                                    </ul>
-                                    @endif
+                
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                                     <span class="icon-off"></span>  {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -107,10 +104,10 @@
         <div class="clearfix"></div>
         
         <div class="footer">
-            <img src="footer2.png">
+            <img src="{{asset('footer2.png')}}">
         </div><!--footer-->
 
-        
+        <!--<link rel="stylesheet" type="text/css" href="{{ asset('assets/style.css') }}">-->
     </div><!--mainwrapper-->
 
 </body>
