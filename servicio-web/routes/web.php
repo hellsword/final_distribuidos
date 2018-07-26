@@ -16,10 +16,10 @@ Route::get('/', function () {
     
 });
 
-Route::get('/crear', function () {
+/*Route::get('/crear', function () {
     return view('usuarios.create');
     
-});
+});*/
 
 Route::resource('/usuarios','UserController');
 Route::resource('/InfoContacto','InfoContactoController'); 

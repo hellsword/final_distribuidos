@@ -3,14 +3,9 @@
 
 
 <div class="breadcrumbwidget">
-    <ul class="breadcrumb">
-        <li><a href="dashboard.html">Home</a> <span class="divider">/</span></li>
-        <li class="active">Page Not Found</li>
-    </ul>
+    
 </div><!--breadcrumbs-->
-<div class="pagetitle">
-    <h1>Page Not Found</h1> <span>We couldn't find that page. It appears that you are lost.</span>
-</div><!--pagetitle-->
+
 
 <div class="maincontent">
     <div class="contentinner">

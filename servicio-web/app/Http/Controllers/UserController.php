@@ -23,10 +23,40 @@ use Illuminate\Support\Facades\Redirect;
 use DB;
 use Image; 
 
+
+use Closure;
+use Session;
+
 class UserController extends Controller
 {
-    public function index(Request $request)
+    protected $auth;
+    
+    public function __construct(Guard $auth)
     {
+        //le diremos que gestione el acceso por usuario 
+        $this->middleware('auth');
+        $this->auth =$auth;
+
+
+    }
+
+    public function create()
+    {
+        /*
+        $this->middleware('auth');
+        $this->auth =$auth;*/
+
+        return view('usuarios.create');
+    }
+
+
+    
+    public function index(Guard $auth,Request $request)
+    {
+
+
+        $this->middleware('auth');
+        $this->auth =$auth;
 
         if ($request)
         {
@@ -55,7 +85,7 @@ class UserController extends Controller
     
     public function store(Request $request)
     {
-        
+       
         $usuario = new User;
         $usuario->username=$request->get('username');
         $usuario->password=bcrypt($request->get('password'));

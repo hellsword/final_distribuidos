@@ -45,7 +45,7 @@
             <div class="leftmenu">        
                 <ul class="nav nav-tabs nav-stacked">
                     <li class="nav-header">Main Navigation</li>
-                    <li><a class="dropdown-item" href="/crear"><i class="icon-user"></i>  {{ __('Crear usuarios') }}</a></li>
+                    <li><a class="dropdown-item" href="/usuarios/create"><i class="icon-user"></i>  {{ __('Crear usuarios') }}</a></li>
                     <li><a class="dropdown-item" href="/usuarios"><span class="icon-align-justify"></span>{{ __('Lista de usuarios') }}</a></li>
                     
                 </ul>
