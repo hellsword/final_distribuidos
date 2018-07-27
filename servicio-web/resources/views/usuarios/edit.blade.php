@@ -13,7 +13,7 @@
                 <p>
                     <label>{{ __('Foto') }}</label>
                     <span class="field">
-                        <input type="file" class="uniform-file" name="foto">
+                        <input type="file" class="uniform-file" name="foto"/>
                     </span>
                 </p>
 

@@ -6,14 +6,26 @@
     <!--<link rel="stylesheet" type="text/css" href="{{ asset('assets/style.css') }}">-->
     <link rel="stylesheet" href="{{ asset('css/style.default.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('prettify/prettify.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-fileupload.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-timepicker.min.css') }}" type="text/css" />
+
     <script type="text/javascript" src="{{ asset('prettify/prettify.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-migrate-1.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-fileupload.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.uniform.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.tagsinput.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.autogrow-textarea.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/charCount.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/ui.spinner.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/chosen.jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.cookie.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/custom.js')}}"></script>
-
+    <script type="text/javascript" src="{{ asset('js/forms.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
 
